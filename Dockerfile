@@ -27,6 +27,9 @@ RUN yarn add --force @swc/core
 # Copy the rest of the application files
 COPY . .
 
+# Attach Volume for Strapi uploads, later change to a cloud storage
+VOLUME ["/app/public/uploads"]
+
 # Set Node.js memory limit to prevent "heap out of memory" errors
 ENV NODE_OPTIONS="--max-old-space-size=2048"
 
