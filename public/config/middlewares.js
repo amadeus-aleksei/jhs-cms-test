@@ -5,11 +5,16 @@ module.exports = ({ env }) => ([
   {
     name: 'strapi::cors',
     config: {
-      origin: ['*'],
+      origin: env('NODE_ENV') === 'production'
+        ? [
+          'https://probablyawebsite.com/',
+          'https://api.probablyawebsite.com/',
+        ]
+        : ['http://localhost:5173'],
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
       headers: ['Content-Type', 'Authorization'],
     },
-  }, 
+  },
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
