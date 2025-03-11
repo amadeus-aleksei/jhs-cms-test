@@ -1,5 +1,9 @@
 module.exports = ({ env }) => ({
-  url: env('PUBLIC_URL', 'https://api.probablyawebsite.com'),
+  url: env.array(
+    env('NODE_ENV') === 'production'
+      ? 'PROD_PUBLIC_URL'
+      : 'DEV_PUBLIC_URL'
+  ),
   proxy: true,
   dirs: {
     public: "/app/public",
