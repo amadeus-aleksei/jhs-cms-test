@@ -26,6 +26,7 @@ RUN yarn add --force @swc/core
 
 # Copy the rest of the application files
 COPY . .
+COPY certificates /app/certificates
 
 # Attach Volume for Strapi uploads, later change to a cloud storage
 VOLUME ["/app/public/uploads"]
