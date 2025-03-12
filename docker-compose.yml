@@ -8,11 +8,12 @@ services:
     environment:
       NODE_ENV: production
       HOST: 0.0.0.0
-  nginx:
-    image: nginx:alpine
     volumes:
       # Static files
       - ./public/uploads:/app/public/uploads
+  nginx:
+    image: nginx:alpine
+    volumes:
       # Nginx config
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
       - ./etc/nginx/sites-available:/etc/nginx/sites-available
