@@ -10,7 +10,7 @@ services:
       HOST: 0.0.0.0
     volumes:
       # Static files
-      - ./public/uploads:/app/public/uploads
+      - /home/jada-home-solutions/uploads:/app/public/uploads
   nginx:
     image: nginx:alpine
     volumes:
