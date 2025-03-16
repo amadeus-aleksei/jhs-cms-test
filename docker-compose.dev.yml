@@ -1,0 +1,27 @@
+version: '3'
+services:
+  strapi:
+    build: .
+    container_name: jhs-cms-test-dev
+    ports:
+      - "1337:1337"
+    environment:
+      NODE_ENV: development
+      HOST: 0.0.0.0
+    volumes:
+      # Your local mount space for uploads
+      - <local-directory>:/app/public/uploads
+  nginx:
+    image: nginx:alpine
+    volumes:
+      # Nginx config
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./etc/nginx/sites-available:/etc/nginx/sites-available
+      # SSL certificates
+      - ./certificates/cert.pem:/etc/ssl/certs/cert.pem
+      - ./certificates/key.pem:/etc/ssl/private/key.pem
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    depends_on:
+      - strapi
